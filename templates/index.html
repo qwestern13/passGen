@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            background-color: #f0f0f0;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="number"], output {
+            padding: 5px;
+            margin: 5px 0;
+        }
+        input[type="submit"] {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .password-list {
+            margin-top: 20px;
+        }
+        .password-item {
+            font-family: monospace;
+            padding: 5px;
+            border: 1px solid #ccc;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Password Generator</h1>
+    <form method="POST">
+        <label for="count">Number of Passwords:</label>
+        <input type="number" id="count" name="count" value="5" min="1" max="20"><br>
+        
+        <label for="length">Password Length:</label>
+        <input type="number" id="length" name="length" value="12" min="6" max="30"><br>
+        
+        <label><input type="checkbox" name="digits" checked> Include Digits</label><br>
+        <label><input type="checkbox" name="uppercase" checked> Include Uppercase Letters</label><br>
+        <label><input type="checkbox" name="lowercase" checked> Include Lowercase Letters</label><br>
+        <label><input type="checkbox" name="special" checked> Include Special Characters</label><br>
+        
+        <input type="submit" value="Generate Passwords">
+    </form>
+
+    {% if passwords %}
+        <h2>Your Generated Passwords:</h2>
+        <div class="password-list">
+            {% for password in passwords %}
+                <br>
+                <output class="password-item">{{ password }}</output>
+            {% endfor %}
+        </div>
+    {% endif %}
+</body>
+</html>
